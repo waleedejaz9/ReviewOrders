@@ -1,0 +1,20 @@
+{
+    "txtReview" : "Revisar artículos para pedido",
+    "Review" : "Revisar",
+    "displayUserName" : "Mostrar nombre de usuario",
+    "displayUserNamePlaceholder" : "María S.",
+    "typeHerePlaceholder" : "tipo aquí ...",
+    "choose" : "escoger",
+    "Rating" : "Calificaciones",
+    "Comments" : "Comentarios",
+    "Optional" : "(Opcional)",
+    "Fit" : "Encajar",
+    "Height" : "Altura",
+    "Weight" :"Peso",
+    "Inches" : "pulgadas",
+    "CM" : "cm",
+    "ItemSize" : "tamaño del artículo",
+    "Meas1" : "Medida1",
+    "Meas2" : "Medida2",
+    "Meas3" :" Medida3"
+}

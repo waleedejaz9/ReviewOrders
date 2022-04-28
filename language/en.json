@@ -1,0 +1,18 @@
+{
+    "txtReview" : "Review Items for Order",
+    "Review" : "Review",
+    "Rating" : "Rating",
+    "Comments" : "Comments",
+    "Optional" : "(optional)",
+    "Fit" : "Fit",
+    "Height" : "Height",
+    "Weight" :"Weight",
+    "Inches" : "inches",
+    "CM" : "cm",
+    "ItemSize" : "item size",
+    "Meas1" : "Meas1",
+    "Meas2" : "Meas2",
+    "Meas3" :" Meas3",
+    "uploadImage": "upload an Image"
+
+}

@@ -1,0 +1,375 @@
+<html>
+
+<head>
+    <title>Review Order</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="/css/reviewOrder.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/js/ratings.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/css/ratings.css" />
+
+</head>
+
+<!-- language is converted when you pass the params of language named according to the language/(name.json) file -->
+
+<body class="bg-sky-50 h-full">
+    <div>
+        <div class="container mx-auto 2xl:max-screen-xl">
+            <div class="flex flex-row pt-20">
+                <h3 class="font-bold text-3xl">Review Item for order</h3>
+                <h3 class="font-semibold text-3xl pl-2" id="order-id">{order id}</h3>
+            </div>
+            <% if (products.length==0 ) { %>
+                <div class="mt-4 p-6 rounded-lg drop-shadow-xl bg-white">
+                    <div class="flex">
+                        <h1 class="font-semibold text-xl">No Product found against this url</h1>
+                    </div>
+                </div>
+                <%} else { %>
+                    <div class="mt-4 p-6 rounded-lg drop-shadow-xl bg-white">
+                        <div class="flex">
+                            <h3 class="font-semibold text-xl">Display UserName</h3>
+                            <input type="text" id="Display_userName" placeholder="Maria S." class="ml-20 w-72 p-2"
+                                style="padding-left: 20px; background-color: aliceblue;">
+                        </div>
+                    </div>
+                    <% for (var k=0; k <products.length; k++ ) { %>
+                        <div id="dvDynamicForm">
+                            <div class="mt-3 mb-5 p-4 pb-10 rounded-lg drop-shadow-xl bg-white">
+                                <input type="hidden" id="hfProduct_Id_<%= k %>" value="<%= products[k].product_id %>" />
+                                <input type="hidden" id="resubmit_lang_<%= k %>" value="<%= language.resubmit %>" />
+                                <div class="flex">
+                                    <h2 class="text-2xl font-semibold">Review</h2>
+                                    <h2 class="text-2xl font-normal pl-2" id="review-item-name_ <%= k %>'">
+                                        <%= language.product_name %>
+                                    </h2>
+                                </div>
+                                <hr class="text-gray-400 pt-3 mt-8">
+                                <div class="grid grid-cols-2">
+                                    <div class="ml-10">
+                                        <div class="flex">
+                                            <h1 class="text-xl font-semibold">
+                                                <%= language.Rating %>
+                                            </h1>
+                                            <input id="star-rating-value_<%= k %>" type="number" />
+                                        </div>
+                                        <div>
+                                            <h1 class="text-xl font-semibold mt-5">
+                                                <%= language.Comments %>
+                                                    <span class="font-normal">
+                                                        <%= language.Optional %>
+                                                    </span>
+                                            </h1>
+                                            <textarea name="comments" id="comments_<%= k %>" cols="45" rows="3"
+                                                class="w-9/12 border mt-4"></textarea>
+                                        </div>
+                                        <div class="flex justify-end mt-10 -ml-96 mr-32">
+                                            <button
+                                                class="bg-purple-400 hover:bg-purple-500 pt-2 pb-3 w-3/12 rounded-sm text-white"
+                                                id="submit-btn_<%=k %>">
+                                                <% if (products[k].allow_resubmit==1) { %>
+                                                    <span id="resubmit_<%=k %>"><%= language.resubmit %></span>
+                                                    <span><img class="w-1/12" src="/images/checkmark.png"></img></span>
+                                                    <%} else { %>
+                                                        <span id="submit_<%=k %>"><%= language.submit %></span>
+                                                        <% } %>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <div class="flex w-full">
+                                            <div class="flex flex-col pt-7">
+                                                <div class="grid grid-cols-2 pt-7">
+                                                    <label for="Fit">
+                                                        <%= language.Fit %>
+                                                    </label>
+                                                    <select name="fit" id="fit_<%= k %>" class="border bg-gray-200">
+                                                        <option value="0" selected="true">choose:</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                    </select>
+                                                </div>
+                                                <div class="grid grid-cols-2 pt-7">
+                                                    <label for="height">
+                                                        <%= language.Height %>
+                                                    </label>
+                                                    <select name="height_Inch" id="height_inch_<%= k %>"
+                                                        class="border bg-gray-200 flex justify-end">
+                                                    </select>
+                                                    <select name="height_CM" id="height_cm_<%= k %>"
+                                                        style="display:none;"
+                                                        class="border bg-gray-200 flex justify-end">
+                                                    </select>
+                                                </div>
+                                                <div class="grid grid-cols-2 pt-7">
+                                                    <label for="weight">
+                                                        <%= language.Weight %>
+                                                    </label>
+                                                    <div class="flex justify-end">
+                                                        <input type="number" id="weight_<%= k %>"
+                                                            class="border text-base" placeholder="Type here...">
+                                                    </div>
+                                                </div>
+                                                <div class="grid grid-cols-2 mt-9">
+                                                    <label for="Image">
+                                                        <%= language.Image %>
+                                                    </label>
+                                                    <div class="p-2 flex justify-center hover:cursor-pointer">
+                                                
+                                                        <button id="btnFile_<%= k %>" class="border p-2 pl-6 pr-6">
+                                                            <%= language.uploadImage %>
+                                                        </button>
+                                                        <span id="spn_FileName_<%= k %>"></span>
+                                                        <p class="text-xl" style="display:none">
+                                                            <input type="file" id="file_<%= k %>" accept="image/png, image/jpeg" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-28">
+                                                <div class="flex flex-row justify-evenly">
+                                                    <h1 class="font-bold">Inches</h1>
+                                                    <!-- Rounded switch -->
+                                                    <label class="switch">
+                                                        <input type="checkbox" id="myButton_<%= k %>">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                    <h1 class="font-bold">Cm</h1>
+                                                </div>
+                                                <% if (k !=0 ) { %>
+                                                    <label class="mt-3" for="chkBoxMeas_<%= k %>"> Measurements
+                                                        <input type="checkbox" id="chkBoxMeas_<%= k %>" />
+                                                    </label>
+
+                                                    <%} else { %>
+                                                        <span></span>
+                                                        <% } %>
+                                                            <div class="flex flex-col pt-3">
+                                                                <div class="grid grid-cols-2">
+                                                                    <label for="item_size">
+                                                                        <%= language.ItemSize %>
+                                                                    </label>
+                                                                    <select name="fit" id="item_size_<%= k %>"
+                                                                        class="flex justify-end bg-gray-200 border">
+                                                                        <option value="0" selected="true">
+                                                                            choose:
+                                                                        </option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="grid grid-cols-2 mt-7">
+                                                                    <label for="Fit">
+                                                                        <%= language.Meas1 %>
+                                                                    </label>
+                                                                    <input type="number" id="Meas1_<%= k %>"
+                                                                        placeholder="Type here..."
+                                                                        class="flex justify-end">
+                                                                </div>
+                                                                <div class="grid grid-cols-2 mt-7">
+                                                                    <label for="Fit">
+                                                                        <%= language.Meas2 %>
+                                                                    </label>
+                                                                    <input type="number" id="Meas2_<%= k %>"
+                                                                        placeholder="Type here..."
+                                                                        class="flex justify-end">
+                                                                </div>
+                                                                <div class="grid grid-cols-2 mt-7">
+                                                                    <label for="Fit">
+                                                                        <%= language.Meas3 %>
+                                                                    </label>
+                                                                    <input type="number" id="Meas3_<%= k %>"
+                                                                        placeholder="Type here..."
+                                                                        class="flex justify-end">
+                                                                </div>
+                                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <% } %>
+
+                        </div>
+        </div>
+        <% } %>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var currentUrl = window.location.href;
+        const params = (new URL(currentUrl)).searchParams;
+        let order = params.get("order");
+        document.getElementById('order-id').innerHTML = order;
+        // Height drop down items
+        var array = [
+            { text: "5'4''", value: 64 },
+            { text: "5'4''", value: 65 },
+            { text: "5'4''", value: 66 },
+            { text: "5'4''", value: 67 },
+            { text: "5'4''", value: 68 }
+        ];
+        // Height drop down items For centimeters
+        var arrayCM = [
+            { text: "A'4''", value: 64 },
+            { text: "B'4''", value: 65 },
+            { text: "C'4''", value: 66 },
+            { text: "D'4''", value: 67 },
+            { text: "E'4''", value: 68 }
+        ];
+
+        function sendReviews(body, id) {
+            var formData = new FormData()
+            for (let key in body) {
+                formData.append(key, body[key])
+            }
+            var config = {
+                method: "post",
+                url: "http://localhost:3000/reviewOrders",
+                headers: {
+                    "Content-Type": "application/multipart/form-data/json",
+                },
+                data: formData,
+            };
+            axios(config)
+                .then(function (response) {                                                        
+                    $("[id=submit_"+id+"]").text($("[id=resubmit_lang_" + id + "]").val());
+                    $("[id=submit_" + id + "]").append('<span><img class="w-1/12" src="/images/checkmark.png"/></span>');
+                })
+                .catch(function (error) {
+                    alert(error.message)
+                });
+        }
+        function validateFileType(id) {
+            var fileName = document.getElementById("file_"+id).value;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        $(document).ready(function () {
+            
+            $("button[id^=btnFile_]").on('click', function () {
+                let id = $(this).attr('id').split('_')[1];
+                $('input[id=file_' + id + ']').click();
+            });
+
+            $("input[id^=file_]").on('change', function(evt){
+                let id = $(this).attr('id').split('_')[1];
+                if (validateFileType(id)) {
+                    let fName = $('input[id=file_' + id + ']').val().replace(/.*(\/|\\)/, '');
+                    $("span[id=spn_FileName_"+id+"]").text(fName);
+                } else {
+                    alert("Only jpg/jpeg and png files are allowed!");
+                }
+                
+            })
+
+            function fnSubmit(id) {
+                let product_id = $("[id=hfProduct_Id_" + id + "]").val();
+                let order = params.get("order");
+                let store_id = params.get("store_id");
+                let imgUrl = $('input[id=file_' + id + ']').val().replace(/.*(\/|\\)/, '')
+                if (!imgUrl) {
+                    imgUrl = ''
+                }
+                sendReviews({
+                    Order_id: order,
+                    Store_id: store_id,
+                    Display_userName: $('[id=Display_userName]').val(),
+                    Product_id: product_id,
+                    Star_rating: $('[id=star-rating-value_' + id + ']').val(),
+                    Comments: $('[id=comments_' + id + ']').val(),
+                    Is_cm: $('[id=myButton_' + id + ']').prop('checked') ? 1 : 0,
+                    Fit: parseInt($('[id=fit_' + id + ']').val()),
+                    Height: parseInt((!isCMSelected ? $('[id=height_inch_' + id + ']').val() : $('[id=height_CM_' + id + ']').val())),
+                    Weight: parseInt($('[id=weight_' + id + ']').val()),
+                    ItemSize: parseInt($('[id=item_size_' + id + ']').val()),
+                    Meas1: parseInt($('[id=Meas1_' + id + ']').val()),
+                    Meas2: parseInt($('[id=Meas2_' + id + ']').val()),
+                    Meas3: parseInt($('[id=Meas3_' + id + ']').val()),
+                    Image_Url: imgUrl,
+                    File: $('input[id=file_' + id + ']').prop('files')[0]
+                }, id)
+            }
+
+            $("select[id^=height_inch_]").each(function () {
+                var id = $(this).attr('id').split('_')[2];
+                $("select[id=height_inch_" + id + "]").append("<option value='0'>choose</option>");
+                for (let c = 0; c < array.length; c++) {
+                    $("select[id=height_inch_" + id + "]").append("<option value='" + (array[c].value) + "'>" + array[c].text + "</option>");
+                }
+            });
+
+            $("select[id^=height_cm_]").each(function () {
+                var id = $(this).attr('id').split('_')[2];
+                $("select[id=height_cm_" + id + "]").append("<option value='0'>choose</option>");
+                for (let c = 0; c < arrayCM.length; c++) {
+                    $("select[id=height_cm_" + id + "]").append("<option value='" + (arrayCM[c].value) + "'>" + arrayCM[c].text + "</option>");
+                }
+            });
+
+            $("button[id^=submit-btn_]").on('click', function () {
+                var id = $(this).attr('id').split('_')[1];
+                fnSubmit(id);
+            });
+            var isCMSelected = false;
+            $("[id^=myButton_").on('change', function () {
+                var id = $(this).attr('id').split('_')[1];
+                isCMSelected = $(this).prop('checked');
+                if (isCMSelected) {
+                    $("select[id=height_cm_" + id + "]").show();
+                    $("select[id=height_inch_" + id + "]").hide();
+                }
+                else {
+                    $("select[id=height_cm_" + id + "]").hide();
+                    $("select[id=height_inch_" + id + "]").show();
+                }
+            });
+
+            $('[id^=star-rating-value_]').rating({
+                min: 0,
+                max: 5,
+                step: 1,
+                size: 'sm',
+                showClear: false,
+                showCaption: false
+            });
+
+            $("[id^=chkBoxMeas_]").on('change', function () {
+                var id = $(this).attr('id').split('_')[1]
+                var value = $(this).prop('checked');
+                if (value) {
+                    $('[id=fit_' + (id) + ']').val($('[id=fit_' + (id - 1) + ']').val());
+                    $('[id=weight_' + (id) + ']').val($('[id=weight_' + (id - 1) + ']').val());
+                    $('[id=item_size_' + (id) + ']').val($('[id=item_size_' + (id - 1) + ']').val());
+                    if (!isCMSelected) {
+                        $('[id=height_inch_' + (id) + ']').val($('[id=height_inch_' + (id - 1) + ']').val());
+                    } else {
+                        $('[id=height_cm_' + (id) + ']').val($('[id=height_cm_' + (id - 1) + ']').val());
+                    }
+                    $('[id=Meas1_' + (id) + ']').val($('[id=Meas1_' + (id - 1) + ']').val());
+                    $('[id=Meas2_' + (id) + ']').val($('[id=Meas2_' + (id - 1) + ']').val());
+                    $('[id=Meas3_' + (id) + ']').val($('[id=Meas3_' + (id - 1) + ']').val());
+                    $('[id=myButton_' + (id) + ']').prop('checked', $('[id=myButton_' + (id - 1) + ']').prop('checked'));
+                    $('[id=myButton_' + (id) + ']').trigger('change');
+                }
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>
