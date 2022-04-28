@@ -320,7 +320,7 @@
 
             $("select[id^=height_cm_]").each(function () {
                 var id = $(this).attr('id').split('_')[2];
-                $("select[id=height_cm_" + id + "]").append("<option value='0'>choose</option>");
+                $("select[id=height_cm_" + id + "]").append("<option value='0'><%= language.choose %></option>");
                 for (let c = 0; c < arrayCM.length; c++) {
                     $("select[id=height_cm_" + id + "]").append("<option value='" + (arrayCM[c].value) + "'>" + arrayCM[c].text + "</option>");
                 }
