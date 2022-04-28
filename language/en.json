@@ -13,6 +13,15 @@
     "Meas1" : "Meas1",
     "Meas2" : "Meas2",
     "Meas3" :" Meas3",
-    "uploadImage": "upload an Image"
+    "uploadImage": "upload an Image",
+    "Image" : "image",
+    "typeHere" : "Type here ...",
+    "reviewItemOrder": "Review Item for an order",
+    "DisplayUserName" : "Display UserName",
+    "userName" : "Maria S",
+    "choose" : "choose",
+    "submit" : "submit",
+    "resubmit" : "reSubmit",
+    "optional" : "Opcional"
 
 }

@@ -13,8 +13,14 @@
     "Meas1" : "Medida1",
     "Meas2" : "Medida2",
     "Meas3" :" Medida3",
-    "submit" : "submasdsadit",
-    "resubmit" : "resuasdasdbmit",
-    "uploadImage": "upload an Image",
-    "Image" : "Image"
+    "uploadImage": "subir una imagen",
+    "Image" : "imagen",
+    "typeHere" : "Escriba aquí ...",
+    "reviewItemOrder": "Revisar artículo para un pedido",
+    "DisplayUserName" : "Mostrar nombre de usuario",
+    "userName" : "De Maria",
+    "choose" : "escoger",
+    "submit" : "entregar",
+    "resubmit" : "volver a enviar",
+    "optional" : "Opcional"
 }

@@ -20,7 +20,7 @@
     <div>
         <div class="container mx-auto 2xl:max-screen-xl">
             <div class="flex flex-row pt-20">
-                <h3 class="font-bold text-3xl">Review Item for order</h3>
+                <h3 class="font-bold text-3xl"><%= language.reviewItemOrder %></h3>
                 <h3 class="font-semibold text-3xl pl-2" id="order-id">{order id}</h3>
             </div>
             <% if (products.length==0 ) { %>
@@ -32,8 +32,8 @@
                 <%} else { %>
                     <div class="mt-4 p-6 rounded-lg drop-shadow-xl bg-white">
                         <div class="flex">
-                            <h3 class="font-semibold text-xl">Display UserName</h3>
-                            <input type="text" id="Display_userName" placeholder="Maria S." class="ml-20 w-72 p-2"
+                            <h3 class="font-semibold text-xl"><%= language.DisplayUserName %></h3>
+                            <input type="text" id="Display_userName" placeholder='<%= language.userName %>' class="ml-20 w-72 p-2"
                                 style="padding-left: 20px; background-color: aliceblue;">
                         </div>
                     </div>
@@ -72,8 +72,14 @@
                                                 class="bg-purple-400 hover:bg-purple-500 pt-2 pb-3 w-3/12 rounded-sm text-white"
                                                 id="submit-btn_<%=k %>">
                                                 <% if (products[k].allow_resubmit==1) { %>
-                                                    <span id="resubmit_<%=k %>"><%= language.resubmit %></span>
-                                                    <span><img class="w-1/12" src="/images/checkmark.png"></img></span>
+                                                    
+
+                                                        <span id="resubmit_<%=k %>" class="flex justify-center">
+                                                           <p><%= language.resubmit %></p> 
+                                                            <img class="w-1/12 pl-2" src="/images/checkmark.png" />
+                                                        </span>
+                                                    
+                                                 
                                                     <%} else { %>
                                                         <span id="submit_<%=k %>"><%= language.submit %></span>
                                                         <% } %>
@@ -88,7 +94,7 @@
                                                         <%= language.Fit %>
                                                     </label>
                                                     <select name="fit" id="fit_<%= k %>" class="border bg-gray-200">
-                                                        <option value="0" selected="true">choose:</option>
+                                                        <option value="0" selected="true"><%= language.choose %></option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -112,7 +118,7 @@
                                                     </label>
                                                     <div class="flex justify-end">
                                                         <input type="number" id="weight_<%= k %>"
-                                                            class="border text-base" placeholder="Type here...">
+                                                            class="border text-base" placeholder='<%= language.typeHere %>'>
                                                     </div>
                                                 </div>
                                                 <div class="grid grid-cols-2 mt-9">
@@ -157,7 +163,7 @@
                                                                     <select name="fit" id="item_size_<%= k %>"
                                                                         class="flex justify-end bg-gray-200 border">
                                                                         <option value="0" selected="true">
-                                                                            choose:
+                                                                            <%= language.choose %>
                                                                         </option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
@@ -169,7 +175,7 @@
                                                                         <%= language.Meas1 %>
                                                                     </label>
                                                                     <input type="number" id="Meas1_<%= k %>"
-                                                                        placeholder="Type here..."
+                                                                        placeholder='<%= language.typeHere %>'
                                                                         class="flex justify-end">
                                                                 </div>
                                                                 <div class="grid grid-cols-2 mt-7">
@@ -177,7 +183,7 @@
                                                                         <%= language.Meas2 %>
                                                                     </label>
                                                                     <input type="number" id="Meas2_<%= k %>"
-                                                                        placeholder="Type here..."
+                                                                        placeholder='<%= language.typeHere %>'
                                                                         class="flex justify-end">
                                                                 </div>
                                                                 <div class="grid grid-cols-2 mt-7">
@@ -185,7 +191,7 @@
                                                                         <%= language.Meas3 %>
                                                                     </label>
                                                                     <input type="number" id="Meas3_<%= k %>"
-                                                                        placeholder="Type here..."
+                                                                        placeholder='<%= language.typeHere %>'
                                                                         class="flex justify-end">
                                                                 </div>
                                                             </div>
@@ -306,7 +312,7 @@
 
             $("select[id^=height_inch_]").each(function () {
                 var id = $(this).attr('id').split('_')[2];
-                $("select[id=height_inch_" + id + "]").append("<option value='0'>choose</option>");
+                $("select[id=height_inch_" + id + "]").append("<option value='0'> <%= language.choose %></option>");
                 for (let c = 0; c < array.length; c++) {
                     $("select[id=height_inch_" + id + "]").append("<option value='" + (array[c].value) + "'>" + array[c].text + "</option>");
                 }
