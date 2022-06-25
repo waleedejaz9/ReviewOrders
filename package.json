@@ -10,8 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "scripts": "npm run scripts",
-    "build": "npm run build"
+    "scripts": "npm run scripts"
   },
   "keywords": [],
   "author": "",
