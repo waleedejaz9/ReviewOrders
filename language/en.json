@@ -22,6 +22,6 @@
     "choose" : "choose",
     "submit" : "submit",
     "resubmit" : "reSubmit",
-    "optional" : "Opcional"
-
+    "optional" : "Opcional",
+    "reviewSubmitted" : "Review Submitted"
 }

@@ -1,6 +1,0 @@
-set the environment variables or development/production .env files.
-
-run command:
-npm run dev
-
-language is converted when you pass the params of language named according to the language/(name.json) file

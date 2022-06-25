@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+    "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "set NODE_ENV=development && nodemon index.js parcel index.html",

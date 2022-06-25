@@ -20,7 +20,9 @@
     <div>
         <div class="container mx-auto 2xl:max-screen-xl">
             <div class="flex flex-row pt-20">
-                <h3 class="font-bold text-3xl"><%= language.reviewItemOrder %></h3>
+                <h3 class="font-bold text-3xl">
+                    <%= language.reviewItemOrder %>
+                </h3>
                 <h3 class="font-semibold text-3xl pl-2" id="order-id">{order id}</h3>
             </div>
             <% if (products.length==0 ) { %>
@@ -32,9 +34,11 @@
                 <%} else { %>
                     <div class="mt-4 p-6 rounded-lg drop-shadow-xl bg-white">
                         <div class="flex">
-                            <h3 class="font-semibold text-xl"><%= language.DisplayUserName %></h3>
-                            <input type="text" id="Display_userName" placeholder='<%= language.userName %>' class="ml-20 w-72 p-2"
-                                style="padding-left: 20px; background-color: aliceblue;">
+                            <h3 class="font-semibold text-xl">
+                                <%= language.DisplayUserName %>
+                            </h3>
+                            <input type="text" id="Display_userName" placeholder='<%= language.userName %>'
+                                class="ml-20 w-72 p-2" style="padding-left: 20px; background-color: aliceblue;">
                         </div>
                     </div>
                     <% for (var k=0; k <products.length; k++ ) { %>
@@ -68,22 +72,33 @@
                                                 class="w-9/12 border mt-4"></textarea>
                                         </div>
                                         <div class="flex justify-end mt-10 -ml-96 mr-32">
+
                                             <button
                                                 class="bg-purple-400 hover:bg-purple-500 pt-2 pb-3 w-3/12 rounded-sm text-white"
                                                 id="submit-btn_<%=k %>">
                                                 <% if (products[k].allow_resubmit==1) { %>
-                                                    
-
-                                                        <span id="resubmit_<%=k %>" class="flex justify-center">
-                                                           <p><%= language.resubmit %></p> 
-                                                            <img class="w-1/12 pl-2" src="/images/checkmark.png" />
-                                                        </span>
-                                                    
-                                                 
+                                                    <span id="resubmit_<%=k %>" class="flex justify-center">
+                                                        <p>
+                                                            <%= language.resubmit %>
+                                                        </p>
+                                                    </span>
                                                     <%} else { %>
-                                                        <span id="submit_<%=k %>"><%= language.submit %></span>
+                                                        <span id="submit_<%=k %>">
+                                                            <%= language.submit %>
+                                                        </span>
                                                         <% } %>
                                             </button>
+                                        </div>
+                                        <div class="flex justify-end mt-10 -ml-96 mr-32">
+                                            <% if (products[k].allow_resubmit==1) { %>
+                                                <span id="resubmit_<%=k %>" class="flex justify-center">
+                                                    <p class="text-2xl font-bold">
+                                                        <%= language.reviewSubmitted %>
+                                                    </p>
+                                                    <img class="w-11 pl-2" src="/images/checkmark.png" /> 
+                                                    <!-- you can add font awesome icon in 99 code line -->
+                                                </span>
+                                                <% } %>
                                         </div>
                                     </div>
                                     <div class="mt-3">
@@ -94,7 +109,9 @@
                                                         <%= language.Fit %>
                                                     </label>
                                                     <select name="fit" id="fit_<%= k %>" class="border bg-gray-200">
-                                                        <option value="0" selected="true"><%= language.choose %></option>
+                                                        <option value="0" selected="true">
+                                                            <%= language.choose %>
+                                                        </option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -118,7 +135,8 @@
                                                     </label>
                                                     <div class="flex justify-end">
                                                         <input type="number" id="weight_<%= k %>"
-                                                            class="border text-base" placeholder='<%= language.typeHere %>'>
+                                                            class="border text-base"
+                                                            placeholder='<%= language.typeHere %>'>
                                                     </div>
                                                 </div>
                                                 <div class="grid grid-cols-2 mt-9">
@@ -126,13 +144,14 @@
                                                         <%= language.Image %>
                                                     </label>
                                                     <div class="p-2 flex justify-center hover:cursor-pointer">
-                                                
+
                                                         <button id="btnFile_<%= k %>" class="border p-2 pl-6 pr-6">
                                                             <%= language.uploadImage %>
                                                         </button>
                                                         <span id="spn_FileName_<%= k %>"></span>
                                                         <p class="text-xl" style="display:none">
-                                                            <input type="file" id="file_<%= k %>" accept="image/png, image/jpeg" />
+                                                            <input type="file" id="file_<%= k %>"
+                                                                accept="image/png, image/jpeg" />
                                                         </p>
                                                     </div>
                                                 </div>
@@ -246,8 +265,8 @@
                 data: formData,
             };
             axios(config)
-                .then(function (response) {                                                        
-                    $("[id=submit_"+id+"]").text($("[id=resubmit_lang_" + id + "]").val());
+                .then(function (response) {
+                    $("[id=submit_" + id + "]").text($("[id=resubmit_lang_" + id + "]").val());
                     $("[id=submit_" + id + "]").append('<span><img class="w-1/12" src="/images/checkmark.png"/></span>');
                 })
                 .catch(function (error) {
@@ -255,7 +274,7 @@
                 });
         }
         function validateFileType(id) {
-            var fileName = document.getElementById("file_"+id).value;
+            var fileName = document.getElementById("file_" + id).value;
             var idxDot = fileName.lastIndexOf(".") + 1;
             var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
             if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
@@ -265,21 +284,21 @@
             }
         }
         $(document).ready(function () {
-            
+
             $("button[id^=btnFile_]").on('click', function () {
                 let id = $(this).attr('id').split('_')[1];
                 $('input[id=file_' + id + ']').click();
             });
 
-            $("input[id^=file_]").on('change', function(evt){
+            $("input[id^=file_]").on('change', function (evt) {
                 let id = $(this).attr('id').split('_')[1];
                 if (validateFileType(id)) {
                     let fName = $('input[id=file_' + id + ']').val().replace(/.*(\/|\\)/, '');
-                    $("span[id=spn_FileName_"+id+"]").text(fName);
+                    $("span[id=spn_FileName_" + id + "]").text(fName);
                 } else {
                     alert("Only jpg/jpeg and png files are allowed!");
                 }
-                
+
             })
 
             function fnSubmit(id) {
@@ -357,7 +376,6 @@
                 var id = $(this).attr('id').split('_')[1]
                 var value = $(this).prop('checked');
                 if (value) {
-                    $('[id=fit_' + (id) + ']').val($('[id=fit_' + (id - 1) + ']').val());
                     $('[id=weight_' + (id) + ']').val($('[id=weight_' + (id - 1) + ']').val());
                     $('[id=item_size_' + (id) + ']').val($('[id=item_size_' + (id - 1) + ']').val());
                     if (!isCMSelected) {

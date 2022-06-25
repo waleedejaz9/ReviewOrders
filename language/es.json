@@ -22,5 +22,6 @@
     "choose" : "escoger",
     "submit" : "entregar",
     "resubmit" : "volver a enviar",
-    "optional" : "Opcional"
+    "optional" : "Opcional",
+    "reviewSubmitted" : "revisión enviada"
 }
