@@ -9,9 +9,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "set NODE_ENV=development && nodemon index.js parcel index.html",
+    "dev": "nodemon index.js",
     "scripts": "npm run scripts",
-    "prod": "set NODE_ENV=production && node index.js",
     "build": "npm run build"
   },
   "keywords": [],
