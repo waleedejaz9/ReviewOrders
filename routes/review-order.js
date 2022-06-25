@@ -32,23 +32,22 @@ glob.sync("./language/*.json").forEach(function (file) {
  * renders the form page when the url is hit.
  */
 router.get("/", (req, res) => {
-  res.send("Hellow WOrld");
-  // const lang = req.query.lang;
-  // const store_id = req.query.store_id;
-  // const order = req.query.order;
-  // selectRecordFromDB(`Select p.product_id, p.product_name, p.product_size, p.allow_resubmit from "Products" p inner join "Orders" o on o.product_id = p.product_id
-  // Where o.order_id = '${order}' AND o.store_id = '${store_id}'`).then(
-  //   (data) => {
-  //     if (lang !== "" && language_dict.hasOwnProperty(lang)) {
-  //       res.render("index", {
-  //         products: data.rows,
-  //         language: language_dict[lang],
-  //       });
-  //     } else {
-  //       res.send("<h1>There is some problem in your url</h1>");
-  //     }
-  //   }
-  // );
+  const lang = req.query.lang;
+  const store_id = req.query.store_id;
+  const order = req.query.order;
+  selectRecordFromDB(`Select p.product_id, p.product_name, p.product_size, p.allow_resubmit from "Products" p inner join "Orders" o on o.product_id = p.product_id
+  Where o.order_id = '${order}' AND o.store_id = '${store_id}'`).then(
+    (data) => {
+      if (lang !== "" && language_dict.hasOwnProperty(lang)) {
+        res.render("index", {
+          products: data.rows,
+          language: language_dict[lang],
+        });
+      } else {
+        res.send("<h1>There is some problem in your url</h1>");
+      }
+    }
+  );
 });
 
 /**
