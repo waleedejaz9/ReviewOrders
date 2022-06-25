@@ -3,9 +3,9 @@ import config from "../config.js";
 const { Client } = pkg;
 
 const pool = new pkg.Pool({
-  host: config.DBHOST,
+  host: config.HOST,
   user: config.DBUSERNAME,
-  password: "l1f16bscs0376",
+  password: config.DBPWD,
   database: config.DB,
   port: config.DBPORT,
 });
