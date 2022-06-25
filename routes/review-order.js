@@ -1,10 +1,6 @@
 import express from "express";
 import path from "path";
-import {
-  executeNonQuery,
-  selectRecordFromDB,
-  executeNonQueryUpdate,
-} from "../utils/data-service.js";
+import { executeNonQuery, selectRecordFromDB } from "../utils/data-service.js";
 import fs from "fs";
 import glob from "glob";
 import { upload } from "../routes/middleware.js";
